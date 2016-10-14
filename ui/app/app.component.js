@@ -17,7 +17,7 @@ var AppComponent = (function () {
         core_1.Component({
             selector: 'my-app',
             providers: [bid_service_1.BidService],
-            template: "\n  \n  \n\t<h1>Good enough auction</h1>\n  \n\t<h2>Top bids</h2>\n\t<bid-list></bid-list>\n  \n  \n  "
+            template: "\n\t<h1>Good enough auction</h1>\n  \n\t<h2>Top bids</h2>\n\t<bid-list></bid-list>\n"
         }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);
