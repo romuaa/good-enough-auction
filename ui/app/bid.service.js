@@ -9,19 +9,28 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var bid_service_1 = require('./bid.service');
-var AppComponent = (function () {
-    function AppComponent() {
+var BidService = (function () {
+    function BidService() {
     }
-    AppComponent = __decorate([
-        core_1.Component({
-            selector: 'my-app',
-            providers: [bid_service_1.BidService],
-            template: "\n  \n  \n\t<h1>Good enough auction</h1>\n  \n\t<h2>Top bids</h2>\n\t<bid-list></bid-list>\n  \n  \n  "
-        }), 
+    BidService.prototype.getTopBids = function () {
+        return [
+            {
+                id: 1,
+                amount: 12,
+                email: "foobar"
+            },
+            {
+                id: 2,
+                amount: 120,
+                email: "foobar"
+            }
+        ];
+    };
+    BidService = __decorate([
+        core_1.Injectable(), 
         __metadata('design:paramtypes', [])
-    ], AppComponent);
-    return AppComponent;
+    ], BidService);
+    return BidService;
 }());
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+exports.BidService = BidService;
+//# sourceMappingURL=bid.service.js.map

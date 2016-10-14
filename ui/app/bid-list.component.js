@@ -10,18 +10,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var bid_service_1 = require('./bid.service');
-var AppComponent = (function () {
-    function AppComponent() {
+var BidListComponent = (function () {
+    function BidListComponent(bidService) {
+        this.bids = bidService.getTopBids();
     }
-    AppComponent = __decorate([
+    BidListComponent = __decorate([
         core_1.Component({
-            selector: 'my-app',
-            providers: [bid_service_1.BidService],
-            template: "\n  \n  \n\t<h1>Good enough auction</h1>\n  \n\t<h2>Top bids</h2>\n\t<bid-list></bid-list>\n  \n  \n  "
+            selector: 'bid-list',
+            template: "\n  <div *ngFor=\"let bid of bids\">\n    {{bid.id}} - {{bid.amount}} \u20AC\n  </div>\n  "
         }), 
-        __metadata('design:paramtypes', [])
-    ], AppComponent);
-    return AppComponent;
+        __metadata('design:paramtypes', [bid_service_1.BidService])
+    ], BidListComponent);
+    return BidListComponent;
 }());
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+exports.BidListComponent = BidListComponent;
+//# sourceMappingURL=bid-list.component.js.map
