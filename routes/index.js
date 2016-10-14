@@ -21,9 +21,7 @@ router.get('/', function(req, res, next) {
 
 router.post('/bids', (req, res, next) => {
     
-    var batchid = makeid(10);
-    console.log(batchid);
-  
+    var batchid = makeid(10); 
     const results = [];
     const data = {name: req.body.name, 
 		  email: req.body.email,
@@ -45,6 +43,27 @@ router.post('/bids', (req, res, next) => {
 	
     });
 
+});
+
+router.get('/bids', (req,res,next) => {
+
+    const results = [];
+    pg.connect(connectionString, (err,client,done) => {
+	if (err) {
+	    done();
+	    return res.status(500).json({success: false, data: err});
+	}
+	const query = client.query("select * from bids order by id desc");
+	
+	query.on('row', (row) => {
+	    results.push(row);
+	});
+	
+	query.on('end', () => {
+	    done();
+	    return res.json(results);
+	});
+    });
 });
 
 
