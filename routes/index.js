@@ -4,16 +4,27 @@ const pg = require('pg');
 const path = require('path');
 const connectionString = process.env.DATABASE_URL || 'postgres://auction:auction@localhost:5432/auction';
 
+function makeid(n) {
+    var text = "";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+    for( var i=0; i < n; i++ )
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+    return text;
+}
+
 /* GET home page.  */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
 router.post('/bids', (req, res, next) => {
-    console.log(req);
+    
+    var batchid = makeid(10);
+    console.log(batchid);
   
     const results = [];
-    const batchid = "foobar"; // generate randomly
     const data = {name: req.body.name, 
 		  email: req.body.email,
 		  value: parseInt(req.body.value),
