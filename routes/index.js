@@ -66,5 +66,30 @@ router.get('/bids', (req,res,next) => {
     });
 });
 
+router.get('/min_bid', (req,res,next) => {
+ 
+    var result = null;
+    pg.connect(connectionString, (err,client,done) => {
+	if (err) {
+	    done();
+	    return res.status(500).json({success: false, data: err});
+	}
+	const query = client.query("select min(value) from bids as min_bid");
+	query.on('row', (row) => {
+	    console.log(row);
+	    result = row.min;
+	});
+	query.on('end', () => {
+	    done();
+	    if (result == null) {
+		return res.json({min_bid: null});
+	    }
+	    else {
+		return res.json({min_bid: result});
+	    }		
+	});
+    });
+});
+
 
 module.exports = router;
